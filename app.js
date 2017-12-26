@@ -4,6 +4,7 @@
 /**
  * Module dependencies.
  */
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var server = require("./server");
 var app = server.Server.bootstrap().app;
@@ -90,3 +91,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+exports = module.exports = app;

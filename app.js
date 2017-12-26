@@ -5,7 +5,7 @@
  * Module dependencies.
  */
 
-var server = require("server");
+var server = require("./server");
 var app = server.Server.bootstrap().app;
 var debug = require('debug')('mcs:server');
 var http = require('http');

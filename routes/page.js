@@ -22,18 +22,29 @@ var PageRoute = /** @class */ (function (_super) {
     PageRoute.create = function (router, baseRoute) {
         //log
         _super.doLog.call(this, baseRoute);
-        router.get("/:pageId*?", (function (req, res, next) {
+        router.get("/", (function (req, res, next) {
             new PageRoute().index(req, res, next);
+        }));
+        router.get("/:pageId", (function (req, res, next) {
+            new PageRoute().page(req, res, next);
         }));
     };
     PageRoute.prototype.index = function (req, res, next) {
+        //set custom title
+        this.title = "Index";
+        this.render(req, res, "index");
+    };
+    PageRoute.prototype.page = function (req, res, next) {
         var _this = this;
         //set custom title
         this.title = "" + (req.params.pageId ? "" + req.params.pageId : "Index");
         this.POST.find().then(function (result) {
             var options = { posts: result };
             //render template
-            _this.render(req, res, "index", options);
+            _this.render(req, res, "pageView", options);
+        }, function (err) {
+            console.log(err);
+            next(err);
         });
     };
     return PageRoute;

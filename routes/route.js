@@ -11,6 +11,7 @@ var BaseRoute = /** @class */ (function () {
         this.title = "CMS";
         this.scripts = [];
         this.connection = mongoose.createConnection(config_1.Config.MONGODB_CONNECTION);
+        this.year = new Date().getFullYear();
     }
     BaseRoute.doLog = function (baseRoute) {
         if (baseRoute === void 0) { baseRoute = ""; }
@@ -46,6 +47,8 @@ var BaseRoute = /** @class */ (function () {
         res.locals.scripts = this.scripts;
         //add title
         res.locals.title = this.title;
+        //add year
+        res.locals.year = this.year;
         //render view
         res.render(view, options);
     };

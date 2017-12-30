@@ -1,2 +1,11 @@
-<h1>Products List</h1>
-<p>{{message}}</p>
+<h1>{{name}}</h1>
+<ul>
+    {{#each products as |product|}}
+        <li>
+            <h2>{{product.name}}</h2>
+            <span>{{product.createdAt}}</span>
+            <div>{{product.price}}</div>
+        </li>
+    {{/each}}
+</ul>
+
